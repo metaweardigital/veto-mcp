@@ -52,6 +52,11 @@ Each policy: `table` (exact name or glob, e.g. `payments`, `audit_*`, `*`), `ope
 }
 ```
 
+Sending the full set **updates** it; sending an empty array **clears** it.
+
+### `get_policies` *(Pro)*
+Returns the custom org policy set currently stored for your key — the same rules `analyze_sql` enforces on top of the built-ins. Read-only; returns an empty list if none are set.
+
 ---
 
 ## Setup
@@ -115,6 +120,16 @@ Roles are coarse and easy to misconfigure, and they don't catch a costly sequent
 
 **Does it use an LLM?**
 No. The core is deterministic static analysis + `EXPLAIN`. The calling agent narrates the structured verdict; the verdict itself never comes from a model.
+
+---
+
+## Links
+
+- **Website:** [vetosql.com](https://vetosql.com)
+- **Blog:** [An AI agent wiped a production database. The fix isn't a better prompt.](https://vetosql.com/blog/ai-agent-deleted-production-database/)
+- **MCP endpoint:** `https://vetosql.com/mcp`
+- **Official MCP registry:** `com.vetosql/veto`
+- **Glama:** [glama.ai/mcp/connectors/com.vetosql/veto](https://glama.ai/mcp/connectors/com.vetosql/veto)
 
 ---
 
