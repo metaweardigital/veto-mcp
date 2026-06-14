@@ -3,7 +3,7 @@
   "name": "com.vetosql/veto",
   "title": "Veto — SQL Safety & Cost Oracle",
   "description": "Deterministic safety, correctness & cost gate that vets Postgres SQL before your AI agent runs it.",
-  "version": "0.3.1",
+  "version": "0.5.0",
   "websiteUrl": "https://vetosql.com",
   "repository": {
     "url": "https://github.com/metaweardigital/veto-mcp",
