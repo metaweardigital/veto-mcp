@@ -1,6 +1,6 @@
 # Veto — SQL Safety & Cost Oracle (MCP)
 
-> **Veto is a deterministic MCP server that vets Postgres SQL for safety and cost *before* an AI coding agent runs it.** It returns an `ok` / `warn` / `block` verdict on every statement — no LLM in the core, and it never connects to your database.
+> **Veto is a deterministic MCP server that vets Postgres SQL for safety, correctness, and cost *before* an AI coding agent runs it.** It returns an `ok` / `warn` / `block` verdict on every statement — no LLM in the core, and it never connects to your database.
 
 **Website:** https://vetosql.com · **MCP endpoint:** `https://vetosql.com/mcp` (remote, streamable-http)
 
@@ -13,7 +13,7 @@ AI coding agents (Claude Code, Cursor, …) write and execute SQL. Occasionally 
 | Verdict | Meaning | What falls here |
 |---|---|---|
 | `block` | Destructive / data loss | Unscoped `DELETE`/`UPDATE`, `TRUNCATE`, dropping data-bearing objects — including destructive statements hidden inside CTEs |
-| `warn` | Risky but recoverable | Lock-heavy schema changes, expensive scans, common anti-patterns like `SELECT *` |
+| `warn` | Risky but recoverable | Lock-heavy schema changes, expensive scans, correctness traps that silently return wrong rows (`= NULL`, `NOT IN (subquery)`, a LEFT JOIN filtered into an inner join), common anti-patterns like `SELECT *` |
 | `ok` | Safe to run | Routine, reversible migrations |
 
 Every finding carries a stable dotted id (e.g. `destructive.delete_without_where`) so your pipeline can branch on it. The exact rule set lives server-side and evolves over time.
@@ -97,7 +97,7 @@ The free tier needs no key (60 req/min). **Pro:** add your `VETO-…` key as a b
 
 | Tier | Price | Limits | Extras |
 |---|---|---|---|
-| **Free** | €0 | 60 req/min | Full deterministic verdict — all destructive, locking & cost rules |
+| **Free** | €0 | 60 req/min | Full deterministic verdict — all destructive, locking, correctness & cost rules |
 | **Pro** | €9.90 / mo | 1200 req/min | Custom org policies (`set_policies`), maintainer support |
 
 Subscribe at [vetosql.com](https://vetosql.com).
