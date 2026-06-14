@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.vetosql/veto",
+  "title": "Veto — SQL Safety & Cost Oracle",
+  "description": "Deterministic safety & cost gate that vets Postgres SQL before your AI agent runs it.",
+  "version": "0.3.1",
+  "websiteUrl": "https://vetosql.com",
+  "repository": {
+    "url": "https://github.com/metaweardigital/veto-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://vetosql.com/mcp"
+    }
+  ]
+}
